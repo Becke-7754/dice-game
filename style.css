@@ -165,8 +165,15 @@ i {
 
 .winner {
   background-color: #f7f7f7;
+  font-family: Arial, Helvetica, sans-serif;
 }
 .winner .player-name {
   font-weight: 300;
   color: #eb4d4d;
+}
+
+.loser {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bolder;
+  color: black;
 }
