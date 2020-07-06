@@ -1,28 +1,17 @@
-// Тоглогчийн ээлжийг хадгалах хувьсагч, нэгдүгээр тоглогч 0, хоёрдугаар тоглочийг 1 гэж тэмдэглэе.
+// Тоглоомын бүх газарт ашиглагдах  глобаль хувьсагчдыг энд заралъя
 var activePlayer = 0;
-
-// Тоглогчдын цуглуулсан оноог хадгалах хувьсагч
 var scores = [0, 0];
-
-// Тоглогчийн ээлжиндээ цуглуулж байгаа оноог хадгалах хувьсагч
 var roundScore = 0;
-
-// Шооны аль талаараа хадгалах хувьсагч хэрэгтэй, 1-6 гэсэн утгыг энэ хувьсагчил санамсаргүйгээр үүсгэж өгнө.
-var diceNumber = Math.floor(Math.random() * 6) + 1;
-
-// <div class="player-score" id="score-0">43</div>
-// window.document.querySelector("#score-0").textContent = dice;
-
-// document.querySelector("#score-1").innerHTML = "<em>Yes!<em>";
-
-// Тоглоом эхлэхэд бэлтгэе
 window.document.getElementById("score-0").textContent = "0";
 window.document.getElementById("score-1").textContent = "0";
 window.document.getElementById("current-0").textContent = "0";
 window.document.getElementById("current-1").textContent = "0";
 
+// Шооны зургийг үзүүлэх элементийг DOM-оос хайж олоод энд хадгалъя
 var diceDom = document.querySelector(".dice");
-diceDom.style.display = "none";
+
+// New game товчны эвент листенер
+document.querySelector(".btn-new").addEventListener("click", initGame);
 
 // Шоог шидэх эвент листенер
 document.querySelector(".btn-roll").addEventListener("click", function () {
@@ -92,4 +81,42 @@ function switchToNextPlayer() {
 
   // Шоог түр алга болгох
   diceDom.style.display = "block";
+}
+
+function initGame() {
+  // Тоглогчийн ээлжийг хадгалах хувьсагч, нэгдүгээр тоглогч 0, хоёрдугаар тоглочийг 1 гэж тэмдэглэе.
+  activePlayer = 0;
+
+  // Тоглогчдын цуглуулсан оноог хадгалах хувьсагч
+  scores = [0, 0];
+
+  // Тоглогчийн ээлжиндээ цуглуулж байгаа оноог хадгалах хувьсагч
+  roundScore = 0;
+
+  // Шооны аль талаараа хадгалах хувьсагч хэрэгтэй, 1-6 гэсэн утгыг энэ хувьсагчил санамсаргүйгээр үүсгэж өгнө.
+  var diceNumber = Math.floor(Math.random() * 6) + 1;
+
+  // <div class="player-score" id="score-0">43</div>
+  // window.document.querySelector("#score-0").textContent = dice;
+
+  // document.querySelector("#score-1").innerHTML = "<em>Yes!<em>";
+
+  // Тоглоом эхлэхэд бэлтгэе
+  window.document.getElementById("score-0").textContent = "0";
+  window.document.getElementById("score-1").textContent = "0";
+  window.document.getElementById("current-0").textContent = "0";
+  window.document.getElementById("current-1").textContent = "0";
+
+  diceDom.style.display = "none";
+
+  // Toglogchdiin neriig butsaah
+  document.getElementById("name-0").textContent = "Player 1";
+  document.getElementById("name-1").textContent = "Player 2";
+  document
+    .querySelector(".player-0-panel", ".player-1-panel")
+    .classList.remove("winner", "loser");
+  document
+    .querySelector(".player-1-panel", ".player-0-panel")
+    .classList.remove("winner", "loser");
+  document;
 }
